@@ -22,6 +22,7 @@
         margin: 0;
         box-sizing: border-box;
         text-align: center;
+        /* joko */
       }
 
       .card {
@@ -170,7 +171,7 @@
                   { name: "Kuyang", meaning: "Kamu menyeramkan dengan kepala yang terbang, selalu membuat orang ketakutan dengan penampilanmu." }
               ];
               const khodam = khodams[Math.floor(Math.random() * khodams.length)];
-              document.getElementById('khodamName').innerText = Khodam: ${khodam.name};
+              document.getElementById('khodamName').innerText = `Khodam  ${khodam.name}`;
               document.getElementById('khodamMeaning').innerText = khodam.meaning;
               document.getElementById('result').style.display = 'block';
               document.getElementById('loading').style.display = 'none'; // Sembunyikan spinner
