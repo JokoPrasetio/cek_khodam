@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10" />
     <style>
       body {
-        background-color: rgba(74, 34, 12, 0.9);
+        background-color: rgba(35, 24, 18, 0.9);
         font-family: "Poppins", sans-serif;
         display: flex;
         flex-direction: column;
@@ -26,9 +26,9 @@
       }
 
       .card {
-        background-color: rgba(147, 148, 171, 0.25);
+        background-color: rgba(50, 50, 56, 0.25);
         padding: 20px;
-        border: 1px solid #ffa500;
+        border: 1px solid #292928;
         border-radius: 10px;
         width: 100%;
         max-width: 500px;
@@ -39,41 +39,41 @@
 
       h1,
       p {
-        color: #ffa500;
+        color: #ffffff;
         margin-bottom: 20px;
       }
 
       input[type="text"] {
         padding: 10px;
         font-size: 16px;
-        border: 2px solid #ffa500;
+        border: 2px solid #4f626c;
         border-radius: 200px;
         text-align: center;
         width: 80%;
         margin-bottom: 20px;
         background-color: transparent;
-        color: #f1f1f1;
+        color: #ffffff;
       }
 
       button {
-        background-color: #439c8f;
+        background-color: #634c4c;
         color: #ffffff;
         padding: 10px 25px;
         font-size: 16px;
         border: none;
-        border-radius: 200px;
+        border-radius: 20px;
         cursor: pointer;
         transition: background-color 0.3s, transform 0.2s, box-shadow 0.2s;
       }
 
       button:hover {
-        background-color: #4e4aa7;
+        background-color: #141418;
         transform: translateY(-3px);
         box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
       }
 
       .footer {
-        color: #97d3ff;
+        color: #212427;
         font-weight: bold;
         position: absolute;
         bottom: 10px;
@@ -88,7 +88,7 @@
       .loading-spinner {
         border: 4px solid rgba(255, 255, 255, 0.3);
         border-radius: 50%;
-        border-top: 4px solid #ffa500;
+        border-top: 4px solid #222222;
         width: 40px;
         height: 40px;
         position: absolute;
@@ -98,7 +98,6 @@
         margin-left: -20px;
         animation: spin 1s linear infinite;
       }
-
       @keyframes spin {
         0% {
           transform: rotate(0deg);
@@ -119,18 +118,17 @@
       <div id="loading" class="loading-spinner" style="display: none"></div>
       <button onclick="resetForm()" style="margin-top: 20px">Cek Lagi</button>
       <div id="result">
-        <h2 id="khodamName"></h2>
-        <p id="khodamMeaning"></p>
+        <h4 id="khodamName" style="color: white; font-weight: 700;"> </h4>
+        <p id="khodamMeaning" style="color: rgb(210, 210, 210); font-weight: 500;"></p>
       </div>
     </div>
-    <div class="footer">© 2024 <a target="_blank">Rahmat & Joko </a></div>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script>
       function cekKhodam() {
           const nameInput = document.getElementById('nameInput').value;
           if (!nameInput) {
               Swal.fire({
-                  title: 'GAK BOLEH KOSONG!😡',
+                  title: 'Wajib Diisi',
                   icon: 'error',
                   confirmButtonText: 'OK'
               });
@@ -138,44 +136,38 @@
           }
           document.getElementById('loading').style.display = 'block'; // Tampilkan spinner
           setTimeout(() => {
-              const khodams = [
-                  { name: "Hantu Jeruk Purut", meaning: "Kamu misterius dan menakutkan, seperti hantu yang selalu hadir di malam hari dan membawa cerita seram." },
-                  { name: "Pocong Malam", meaning: "Kamu selalu hadir dengan kesan yang mengejutkan dan penuh dengan misteri, seperti pocong yang muncul tiba-tiba." },
-                  { name: "Kuntilanak Merah", meaning: "Kamu menakutkan dan penuh dendam, membawa aura horor di setiap penampilanmu." },
-                  { name: "Genderuwo Ganas", meaning: "Kamu kuat dan menyeramkan, selalu membuat orang ketakutan dengan kekuatanmu yang luar biasa." },
-                  { name: "Sundel Bolong", meaning: "Kamu penuh misteri dan ketakutan, selalu membuat suasana menjadi mencekam dengan penampilanmu." },
-                  { name: "Wewe Gombel", meaning: "Kamu menyeramkan dan penuh misteri, selalu membuat orang ketakutan dengan kehadiranmu yang tak terduga." },
-                  { name: "Leak Bali", meaning: "Kamu misterius dan menakutkan, seperti Leak yang selalu membawa kengerian di malam hari." },
-                  { name: "Tuyul Pencuri", meaning: "Kamu licik dan penuh trik, selalu membuat suasana menjadi tegang dengan kehadiranmu yang tak terduga." },
-                  { name: "Nyi Roro Kidul", meaning: "Kamu anggun dan penuh kekuatan, namun membawa ketakutan dan misteri di setiap langkahmu." },
-                  { name: "Suster Ngesot", meaning: "Kamu selalu hadir dengan kesan yang menakutkan dan penuh dengan cerita seram, seperti suster ngesot yang muncul di malam hari." },
-                  { name: "Hantu Kuburan", meaning: "Kamu selalu hadir di tempat-tempat sepi, membawa aura seram yang membuat orang merinding." },
-                  { name: "Begu Ganjang", meaning: "Kamu tinggi dan menyeramkan, selalu membawa ketakutan di malam hari." },
-                  { name: "Palasik", meaning: "Kamu menakutkan dan penuh misteri, selalu membuat orang merasa was-was dengan kehadiranmu." },
-                  { name: "Hantu Kepala Buntung", meaning: "Kamu menyeramkan dan mengejutkan, selalu muncul tiba-tiba dan membuat orang ketakutan." },
-                  { name: "Jelangkung", meaning: "Kamu penuh misteri dan selalu memanggil arwah-arwah untuk hadir, membuat suasana menjadi mencekam." },
-                  { name: "Hantu Air", meaning: "Kamu muncul dari kedalaman air, membawa kengerian dengan kehadiranmu yang basah dan dingin." },
-                  { name: "Banaspati", meaning: "Kamu penuh api dan ketakutan, selalu membuat orang ketakutan dengan nyala apimu." },
-                  { name: "Arwah Penasaran", meaning: "Kamu tidak tenang dan selalu gentayangan, mencari keadilan dengan cara yang menakutkan." },
-                  { name: "Hantu Noni Belanda", meaning: "Kamu anggun tapi menyeramkan, membawa cerita seram dari masa lalu kolonial." },
-                  { name: "Sosok Pocong", meaning: "Kamu selalu dibungkus kain kafan, muncul dengan melompat-lompat dan membuat orang ketakutan." },
-                  { name: "Jin Tomang", meaning: "Kamu licik dan penuh trik, membuat orang ketakutan dengan kehadiranmu yang tak terduga." },
-                  { name: "Hantu Belanda", meaning: "Kamu membawa aura masa lalu yang menakutkan, selalu hadir dengan kesan seram." },
-                  { name: "Buto Ijo", meaning: "Kamu besar dan menakutkan, selalu membawa ketakutan dengan penampilanmu yang seram." },
-                  { name: "Ratu Pantai Selatan", meaning: "Kamu penuh kekuatan dan misteri, membawa ketakutan di wilayah pesisir." },
-                  { name: "Hantu Rumah Sakit", meaning: "Kamu selalu muncul di tempat-tempat medis, membawa cerita seram dan ketakutan." },
-                  { name: "Anak Genderuwo", meaning: "Kamu kecil tapi menakutkan, selalu membuat orang ketakutan dengan kehadiranmu yang mengejutkan." },
-                  { name: "Hantu Hutan", meaning: "Kamu selalu hadir di dalam hutan, membawa ketakutan dengan suasana yang gelap dan menyeramkan." },
-                  { name: "Jenglot", meaning: "Kamu kecil dan menakutkan, penuh dengan kekuatan gaib yang membuat orang ketakutan." },
-                  { name: "Arwah Gentayangan", meaning: "Kamu tidak tenang dan selalu berkeliaran, membuat suasana menjadi mencekam dengan kehadiranmu." },
-                  { name: "Kuyang", meaning: "Kamu menyeramkan dengan kepala yang terbang, selalu membuat orang ketakutan dengan penampilanmu." }
-              ];
+            const khodams = [
+              { name: "Hantu Jeruk Purut", meaning: "Seperti hantu yang selalu hadir di malam sepi, kamu membawa kisah kesepian yang menerawang dalam diam, menakutkan namun penuh kerinduan." },
+              { name: "Pocong Malam", meaning: "Kamu hadir tiba-tiba, bagai pocong yang melompat keluar dari kuburannya, membawa kesan mendalam tentang kenangan yang belum terkubur sempurna." },
+              { name: "Genderuwo Ganas", meaning: "Kekuatanmu yang menyeramkan seolah menggambarkan luka batin yang tak pernah terlihat, seperti perasaan hati yang mengaum dalam kesunyian malam yang dingin." },
+              { name: "Sundel Bolong", meaning: "Dengan luka yang terbuka di punggung, kamu menggambarkan kekosongan yang mendalam, menyayat hati siapa pun yang melihatmu, seperti hati yang sudah bolong yang berjalan dengan kesepian." },
+              { name: "Wewe Gombel", meaning: "Penuh misteri dan terasa menyeramkan, kehadiranmu bagai wewe gombel yang mencari anak-anak yang tersesat untuk dijadikan penghibur di malam sepi yang tak berujung." },
+              { name: "Leak Bali", meaning: "Kamu membawa aura misterius dan menakutkan, seperti masa  yang berubah bentuk dalam penyesalan, merindukan masa lalu yang tak bisa kembali." },
+              { name: "Tuyul Pencuri", meaning: "Licik dan penuh trik, kehadiranmu sering membuat hati ini tertipu, seperti tuyul yang mencuri bukan hanya uang tapi juga keceriaan hidup ini." },
+              { name: "Nyi Roro Kidul", meaning: "Anggun namun menyimpan cerita tragis, kamu seperti Nyi Roro Kidul yang menguasai lautan, namun tenggelam dalam kesedihan deraian air mata." },
+              { name: "Suster Ngesot", meaning: "Kisahmu penuh dengan luka dan trauma, membayang dalam setiap gesekan lantai, seperti hati yang teresot dalam penderitaan abadi." },
+              { name: "Hantu Kuburan", meaning: "Kamu hadir di tempat-tempat sepi, membawa kisah pilu yang terkubur, seperti kisah pilu yang menyimpan ribuan kisah tak terucapkan." },
+              { name: "Begu Ganjang", meaning: "Tinggi dan menyeramkan, kehadiranmu seperti begu ganjang yang mengintimidasi, namun di balik itu semua, kamu menyimpan kerinduan yang mendalam untuk dimengerti." },
+              { name: "Palasik", meaning: "Menakutkan dan penuh misteri, kamu bagaikan palasik yang merayap dalam kegelapan, mencari arti dari penderitaan yang tak kunjung usai." },
+              { name: "Hantu Kepala Buntung", meaning: "Menyeramkan dan mengejutkan, kehadiranmu seperti kepala yang terpisah dari tubuhnya, mencari keutuhan yang telah hilang, membawa luka yang terus berdarah." },
+              { name: "Jelangkung", meaning: "Penuh misteri dan selalu memanggil arwah untuk hadir, kamu seperti jelangkung yang mengundang kesunyian untuk berbicara, membagi kisah pilu yang tak terlupakan." },
+              { name: "Hantu Air", meaning: "Kehadiranmu muncul dari kedalaman air, membawa dingin yang menusuk tulang, seperti aku yang terjebak dalam kesedihan yang mengalir tanpa henti." },
+              { name: "Banaspati", meaning: "Penuh api dan ketakutan, kamu bagaikan banaspati yang membakar segala yang ada di depannya, namun sebenarnya hanya mencoba menghangatkan hati yang beku." },
+              { name: "Arwah Penasaran", meaning: "Kamu tidak tenang dan selalu gentayangan, mencari keadilan dalam kesendirian, seperti arwah penasaran yang tak pernah menemukan kedamaian." },
+              { name: "Hantu Noni Belanda", meaning: "Anggun namun menyeramkan, kamu bagaikan noni Belanda yang terjebak dalam zaman, menyimpan kisah sedih di balik kemewahan kolonial." },
+              { name: "Jin Tomang", meaning: "Licik dan penuh trik, kamu bagaikan jin tomang yang bersembunyi dalam bayang-bayang, merindukan hari-hari tanpa kesepian." },
+              { name: "Hantu Belanda", meaning: "Membawa aura masa lalu yang menakutkan, kamu seperti hantu Belanda yang mengembara jauh dari rumah, mencari kedamaian yang tak pernah ditemukan." },
+              { name: "Buto Ijo", meaning: "Besar dan menakutkan, kehadiranmu menimbulkan ketakutan, namun di dalam hatimu hanya ada keinginan untuk diterima, seperti buto ijo yang disalahpahami." },
+              { name: "Ratu Pantai Selatan", meaning: "Penuh kekuatan dan misteri, kamu bagaikan ratu pantai selatan yang menguasai ombak, namun hanyut dalam kesedihan yang tak berujung." },
+              { name: "Anak Genderuwo", meaning: "Kecil tapi menakutkan, kehadiranmu yang mengejutkan sering membuat orang takut, namun sebenarnya kamu hanya mencari tempat yang aman untuk bertumbuh." }
+            ];
+
               const khodam = khodams[Math.floor(Math.random() * khodams.length)];
               document.getElementById('khodamName').innerText = `Khodam ${nameInput} adalah ${khodam.name}`;
               document.getElementById('khodamMeaning').innerText = khodam.meaning;
               document.getElementById('result').style.display = 'block';
-              document.getElementById('loading').style.display = 'none'; // Sembunyikan spinner
-          }, 2000); // Delay untuk simulasi loading
+              document.getElementById('loading').style.display = 'none'; 
+          }, 1000); 
       }
 
       function resetForm() {
